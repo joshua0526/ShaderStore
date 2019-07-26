@@ -1,0 +1,17 @@
+1.Desktop.json里面几个url改地址	"dataUrl": "unityweb/Desktop.data.unityweb",
+								"wasmCodeUrl": "unityweb/Desktop.wasm.code.unityweb",
+								"wasmFrameworkUrl": "unityweb/Desktop.wasm.framework.unityweb",
+2.webpack CopyPlugin添加
+      { from: '*.*', to: 'unityweb/', context: 'assets/img/unityweb/' },
+3.把unity工程目录下build文件夹下的资源放到assets/img/unityweb/目录下。
+4.UnityLoader.js做一下格式化，2887行resolveBuildUrl: function(e) {
+                    return e.match(/(http|https|ftp|file):\/\//) ? e: "./" + e
+                },
+                streamingAssetsUrl: function() {
+                    return o(this.resolveBuildUrl("./unityweb"))
+                },
+5.插件引用import { UnityLoader } from '../../../common/UnityLoader';
+6.插件调用mounted () {
+    window.UnityLoader = UnityLoader;
+    this.gameInstance = UnityLoader.instantiate("gameContainer", Desktop);
+  }
