@@ -10,7 +10,7 @@
                 streamingAssetsUrl: function() {
                     return o(this.resolveBuildUrl("./unityweb"))
                 },
-5.插件引用import { UnityLoader } from '../../../common/UnityLoader';
+5.插件引用UnityLoader.js放入common文件夹下import { UnityLoader } from '../../../common/UnityLoader';
 6.插件调用mounted () {
     window.UnityLoader = UnityLoader;
     this.gameInstance = UnityLoader.instantiate("gameContainer", Desktop);
